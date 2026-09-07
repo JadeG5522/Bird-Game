@@ -10,6 +10,8 @@ public class Bird : MonoBehaviour
     private float movementY;
     private int points = 0;
 
+    private Animator animator;
+
     public int Points => points;
 
     public float speed = 0; 
@@ -22,6 +24,7 @@ public class Bird : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
+        animator = GetComponent<Animator>();
         rb = GetComponent <Rigidbody>(); 
         rb.useGravity = false;
     }
@@ -55,6 +58,7 @@ public class Bird : MonoBehaviour
             rb.useGravity = true;
         }
 
+        animator.SetBool("flying", true);
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
     }
 
