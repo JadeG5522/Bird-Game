@@ -20,6 +20,9 @@ public class Bird : MonoBehaviour
 
     public static bool gameStarted = false;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip pointSound;
 
     void Start()
     {
@@ -27,6 +30,7 @@ public class Bird : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent <Rigidbody>(); 
         rb.useGravity = false;
+        animator.SetBool("flying", true);
     }
 
    void FixedUpdate() 
@@ -58,7 +62,8 @@ public class Bird : MonoBehaviour
             rb.useGravity = true;
         }
 
-        animator.SetBool("flying", true);
+        audioSource.PlayOneShot(audioSource.clip);
+
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
     }
 
@@ -86,14 +91,36 @@ public class Bird : MonoBehaviour
         {
             Debug.Log("+1 Point");
             points += 1;
+            audioSource.PlayOneShot(pointSound);
         }
         if (other.CompareTag("DeathWall"))
         {
-            Debug.Log("Game Over!");
-            gameStarted = false;
-            Time.timeScale = 0f;
-            scoreDisplay.ShowGameOver();
+            EndGame();
         }
 
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Ground")
+        {
+            EndGame();
+        }
+    }
+
+    private void EndGame()
+    {
+        if (!gameStarted)
+        {
+            return;
+        }
+
+        Debug.Log("Game Over!");
+        audioSource.PlayOneShot(deathSound);
+        animator.SetTrigger("die");
+        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        gameStarted = false;
+        Time.timeScale = 0f;
+        scoreDisplay.ShowGameOver();
     }
 }
