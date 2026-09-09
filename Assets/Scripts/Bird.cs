@@ -10,12 +10,10 @@ public class Bird : MonoBehaviour
     private float movementY;
     private int points = 0;
 
-    private Animator animator;
-
     public int Points => points;
 
-    public float speed = 0; 
-    public float jumpForce = 5;
+    public float speed; 
+    public float jumpForce;
     public ScoreDisplay scoreDisplay;
 
     public static bool gameStarted = false;
@@ -27,10 +25,9 @@ public class Bird : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
-        animator = GetComponent<Animator>();
         rb = GetComponent <Rigidbody>(); 
         rb.useGravity = false;
-        animator.SetBool("flying", true);
+
     }
 
    void FixedUpdate() 
@@ -117,8 +114,6 @@ public class Bird : MonoBehaviour
 
         Debug.Log("Game Over!");
         audioSource.PlayOneShot(deathSound);
-        animator.SetTrigger("die");
-        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         gameStarted = false;
         Time.timeScale = 0f;
         scoreDisplay.ShowGameOver();
