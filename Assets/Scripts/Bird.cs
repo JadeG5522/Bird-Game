@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-
 public class Bird : MonoBehaviour
 {
     private Rigidbody rb; 
@@ -111,6 +110,7 @@ public class Bird : MonoBehaviour
         {
             return;
         }
+
 
         Debug.Log("Game Over!");
         audioSource.PlayOneShot(deathSound);
