@@ -538,6 +538,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: d948409e3dc268c47a2e6b5d9d5dcfed, type: 2}
+    - target: {fileID: 9500000, guid: 9f593cbd7bb1be142ae42d4b5131603e, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 13700000, guid: 9f593cbd7bb1be142ae42d4b5131603e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -562,6 +566,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1131119261}
   m_SourcePrefab: {fileID: 100100000, guid: 9f593cbd7bb1be142ae42d4b5131603e, type: 3}
+--- !u!95 &323888923 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: 9f593cbd7bb1be142ae42d4b5131603e, type: 3}
+  m_PrefabInstance: {fileID: 323888922}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &338742368
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,7 +1177,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.73090696
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -1262,6 +1271,7 @@ MonoBehaviour:
   audioSource: {fileID: 1131119255}
   deathSound: {fileID: 8300000, guid: e868c18d4e0b5ab45af52645c6680844, type: 3}
   pointSound: {fileID: 8300000, guid: e6209958387973947b669517c6c76460, type: 3}
+  playerAnimator: {fileID: 323888923}
 --- !u!114 &1131119257
 MonoBehaviour:
   m_ObjectHideFlags: 0

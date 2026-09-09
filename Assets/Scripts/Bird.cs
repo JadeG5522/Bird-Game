@@ -20,6 +20,7 @@ public class Bird : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private AudioClip pointSound;
+    [SerializeField] private Animator playerAnimator;
 
     void Start()
     {
@@ -115,6 +116,8 @@ public class Bird : MonoBehaviour
         Debug.Log("Game Over!");
         audioSource.PlayOneShot(deathSound);
         gameStarted = false;
+        playerAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        playerAnimator.Play("die", 0, 0f);
         Time.timeScale = 0f;
         scoreDisplay.ShowGameOver();
     }
